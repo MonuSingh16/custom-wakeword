@@ -23,7 +23,8 @@
 - Low latency → Measure & Reduce time to acknowledge 
 - Accuracy of the custom wake word detection
 
-
+### Powerpoint
+- Pre-demo presentation slides: https://docs.google.com/presentation/d/1FsmwdQwOyUFbaz1h2P893Sn3dWo6Cn_E/edit?usp=sharing&ouid=100632006093746569721&rtpof=true&sd=true
 
 ### Team Members
  - Monu Singh, Nischal, Nkem Michael Onuorah
