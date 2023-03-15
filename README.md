@@ -21,8 +21,8 @@
 Clone the repository into a local machine and enter the `src` directory using
 
 ```shell
-git clone https://github.com/vineeths96/Spoken-Keyword-Spotting
-cd Spoken-Keyword-Spotting/src
+git clone https://github.com/MonuSingh16/custom-wakeword.git
+cd spotify-custom-wakeword
 ```
 
 
