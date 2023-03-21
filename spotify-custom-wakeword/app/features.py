@@ -30,4 +30,4 @@ def audio_features(file_path):
                         X_inf.shape[2], 
                         1)
 
-    return X_inf
+    return x, sr, X_inf
