@@ -63,15 +63,24 @@ if submit_button:
             if y_pred_int==1:
                 print(print_result[int(y_pred_int)], 'with a probablity of : ', y_pred[0][y_pred_int][0])
                 st.write("")
-                st.success('This is a wake word', icon="✅")
+                
+                audio_file = open('speech-wakeword.wav', 'rb')
+                audio_bytes = audio_file.read()
+                st.audio(audio_bytes, format='audio/ogg')
                 st.snow()
-                st.info('The selected model results this selected file as a wake word with a probability score of %.3f' %y_pred[0][y_pred_int][0]
+                st.success('This is a wake word', icon="✅")
+                st.info("""The selected model results this selected file as a wake word \n
+                         Accuracy score of %.3f""" %y_pred[0][y_pred_int][0]
                         ,icon="ℹ️")
             else:
                 print(print_result[int(y_pred_int)], 'with a probablity of : ', y_pred[0][y_pred_int][0])
                 st.write("")
+                audio_file = open('speech-otherword.wav', 'rb')
+                audio_bytes = audio_file.read()
+                st.audio(audio_bytes, format='audio/ogg')
                 st.error('This is not a wake word', icon="🚨")
-                st.info("The selected model results this selected file as not a wake word with a probablity score of %.3f : " %y_pred[0][y_pred_int][0]
+                st.info("""The selected model results this selected file as not a wake word \n 
+                            Accuracy score of %.3f""" %y_pred[0][y_pred_int][0]
                         ,icon="ℹ️")
         
         with tab3:    
