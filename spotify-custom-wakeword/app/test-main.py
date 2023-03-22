@@ -1,21 +1,21 @@
 import time
+import numpy as np
+import pandas as pd
 
 import matplotlib.pyplot as plt
 from tensorflow.keras import models
 from model_profiler import model_profiler
 
-
 import streamlit as st
 from PIL import Image
-
 from features import audio_features
-import librosa
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 st.title("Wakeword Detection")
 image = Image.open('../imgs/display-image.png')
 st.image(image, caption='Wakeword Detection')
-st.info("""To design, build and deploy a lightweight Keyword spotting ML model
+with st.expander("Project Objective"):
+    st.write("""To design, build and deploy a lightweight Keyword spotting ML model
         (CNN, SVM) and exposed as a mobile-application that can process a “custom wake word”.
           Voice response with results by respecting local device resource constraints (low compute) 
           and adhering to ethical challenges (Privacy respecting and non-eavesdropping) """)
@@ -37,7 +37,7 @@ if submit_button:
     if model_select == "CNN":
         model_cnn = models.load_model('saved_models/model_cnn.h5')
         
-        tab1, tab2, tab3, tab4 = st.tabs(["🗃 Raw Data", "✅ Model Results", "🔎 Model Details", "🤓 Model Explainability"])
+        tab1, tab2, tab3, tab4 = st.tabs(["🗃 Raw Data", "✅ Model Results", "🔎 Model Details", "🤓 Model Evaluation"])
         
         with tab1:
             st.header("Raw Data")
@@ -53,37 +53,41 @@ if submit_button:
             plt.xlabel('Time')
             plt.ylabel('Frequency')
             st.pyplot()
-
-        
+                    
         with tab2:
 
             st.header("Model Results")
             y_pred = model_cnn.predict(X_inf)
             print_result = ['This is not a wake word', 'This is a wake word']
-            res_val = (y_pred>=0.7).astype('int')
-            if res_val==1:
-                print(print_result[int(res_val)], 'with a probablity score of : ', y_pred[0][0])
+            y_pred_int = np.argmax(y_pred, axis=1)            
+            if y_pred_int==1:
+                print(print_result[int(y_pred_int)], 'with a probablity of : ', y_pred[0][y_pred_int][0])
                 st.write("")
-                st.success('Done', icon="✅")
+                st.success('This is a wake word', icon="✅")
                 st.snow()
-                st.write("This is a wake word with a probability score of %.3f " %y_pred[0][0])
+                st.info('The selected model results this selected file as a wake word with a probability score of %.3f' %y_pred[0][y_pred_int][0]
+                        ,icon="ℹ️")
             else:
-                print(print_result[int(res_val)], 'with a probablity score of : ', 1-y_pred[0][0])
+                print(print_result[int(y_pred_int)], 'with a probablity of : ', y_pred[0][y_pred_int][0])
                 st.write("")
-                st.error('Error', icon="🚨")
-                st.write("This is not a wake word with a probablity score of %.3f : " %(1-y_pred[0][0]))
+                st.error('This is not a wake word', icon="🚨")
+                st.info("The selected model results this selected file as not a wake word with a probablity score of %.3f : " %y_pred[0][y_pred_int][0]
+                        ,icon="ℹ️")
         
         with tab3:    
-            st.header("Model Details")
+            st.header("Model Architecture")
             st.image('../imgs/cnn-model.png', caption='CNN Model', use_column_width='always', clamp=True)
         
-            Batch_size = 1
+            Batch_size = 128
             profile = model_profiler(model_cnn, Batch_size)
-            st.header('Model Profiler -')
+            st.header('Model Profiler')
             st.write(profile)
         
         with tab4:
-            st.header("Model Explainability")
+            st.header("Model Evaluation")
+            model_results_df = pd.read_csv("results/model_results.csv", index_col=False)
+            st.write(model_results_df)
+            st.image('../imgs/confusion-matrix.png')
         
     else:
         st.write("No Model Selected")

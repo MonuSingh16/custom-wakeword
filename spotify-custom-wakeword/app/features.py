@@ -5,14 +5,13 @@ import librosa
 import python_speech_features
 
 
-n_mfccs = 128
-len_mfcc= 36
+len_mfcc= 40
 
 def audio_features(file_path):
      
     x , sr = librosa.load(file_path)
     mfcc = python_speech_features.base.mfcc(x, samplerate=sr, winlen=0.256,
-                                        winstep=0.050, numcep=16, nfilt=26,
+                                        winstep=0.050, numcep=90, nfilt=90,
                                         nfft=8192, preemph=0.0, ceplifter=0,
                                         appendEnergy=False, winfunc=np.hanning).T
     
@@ -24,7 +23,7 @@ def audio_features(file_path):
     else:
         mfcc = mfcc[:, :len_mfcc]
         
-    X_inf = np.concatenate(mfcc, axis=0).reshape(1, 16, 36)
+    X_inf = np.concatenate(mfcc, axis=0).reshape(1, 90, 40)
     X_inf = X_inf.reshape(X_inf.shape[0], 
                         X_inf.shape[1], 
                         X_inf.shape[2], 

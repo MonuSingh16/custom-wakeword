@@ -1,0 +1,2 @@
+model,tn,fp,fn,tp,accuracy,recall,f1_score
+CNN,50,1,1,19,0.971830985915493,0.95,0.9500000000000001
