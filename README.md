@@ -25,7 +25,17 @@ git clone https://github.com/MonuSingh16/custom-wakeword.git
 cd spotify-custom-wakeword
 ```
 
+### CNN Model Architecture
+![alt text](https://github.com/MonuSingh16/custom-wakeword/blob/main/spotify-custom-wakeword/imgs/cnn-model.png?raw=true)
 
+![alt text](https://github.com/MonuSingh16/custom-wakeword/blob/main/spotify-custom-wakeword/imgs/model-summary.png?raw=true)
+
+### Model Deployment Architecture 
+![alt text](https://github.com/MonuSingh16/custom-wakeword/blob/main/spotify-custom-wakeword/imgs/architecture.png?raw=true)
+
+### Streamlit App
+
+![alt text](https://github.com/MonuSingh16/custom-wakeword/blob/main/spotify-custom-wakeword/imgs/streamlit-app-demo.png?raw=true)
 
 
 ### Powerpoint
