@@ -30,11 +30,19 @@ cd spotify-custom-wakeword
 
 ![alt text](https://github.com/MonuSingh16/custom-wakeword/blob/main/spotify-custom-wakeword/imgs/model-summary.png?raw=true)
 
+| Model Profile                    | Value         | Unit    |
+|----------------------------------|---------------|---------|
+| Selected GPUs                    | None Detected | GPU IDs |
+| No. of FLOPs                     | 0.0001        | BFLOPs  |
+| GPU Memory Requirement           | 0.1083        | GB      |
+| Model Parameters                 | 1.809         | Million |
+| Memory Required by Model Weights | 6.9009        | MB      |
+
+
 ### Model Deployment Architecture 
 ![alt text](https://github.com/MonuSingh16/custom-wakeword/blob/main/spotify-custom-wakeword/imgs/architecture.png?raw=true)
 
 ### Streamlit App
-
 ![alt text](https://github.com/MonuSingh16/custom-wakeword/blob/main/spotify-custom-wakeword/imgs/streamlit-app-demo.png?raw=true)
 
 
