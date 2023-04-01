@@ -54,11 +54,31 @@ streamlit run app/main.py
 ### Streamlit App
 ![alt text](https://github.com/MonuSingh16/custom-wakeword/blob/main/spotify-custom-wakeword/imgs/streamlit-app-demo.png?raw=true)
 
+### Cloud Model Deployment Steps
+- Setup AWS EC2 instance
+- Connect with EC2 instance with Remote SSH and open terminal
+
+- Once you are in the EC2 instance, clone the repository and enter the `src` directory using
+```shell
+git clone https://github.com/MonuSingh16/custom-wakeword.git
+cd custom-wakeword/spotify-custom-wakeword
+```
+
+- Install all the required modules from 'requirements.txt' file using following command
+```shell
+pip install -r requirements.txt
+```
+
+- After all the modules are installed properly, run the following streamlit command
+```shell
+streamlit run app/main.py
+```
+
+- After running above command 
+![alt text](https://github.com/MonuSingh16/custom-wakeword/blob/main/spotify-custom-wakeword/imgs/ec2_output.png?raw=true)
+
 ### Cloud Model Deployment Architecture 
 ![alt text](https://github.com/MonuSingh16/custom-wakeword/blob/main/spotify-custom-wakeword/imgs/architecture.png?raw=true)
-
-
-
 
 ### Powerpoint
 - [Presentation slides](https://docs.google.com/presentation/d/1FsmwdQwOyUFbaz1h2P893Sn3dWo6Cn_E/edit?usp=sharing&ouid=100632006093746569721&rtpof=true&sd=true)
