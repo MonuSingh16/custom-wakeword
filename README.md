@@ -55,10 +55,26 @@ streamlit run app/main.py
 ![alt text](https://github.com/MonuSingh16/custom-wakeword/blob/main/spotify-custom-wakeword/imgs/streamlit-app-demo.png?raw=true)
 
 ### Cloud Model Deployment Steps
-- Setup AWS EC2 instance
+- Setup AWS EC2 instance. Refer to the [tutorial](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-launch-instance)
+
 - Connect with EC2 instance with Remote SSH and open terminal
 
-- Once you are in the EC2 instance, clone the repository and enter the `src` directory using
+- Once you are in the EC2 instance, set up environment
+```
+sudo yum update -y 
+sudo yum install git -y  # install git
+
+# install tmux to switch easily between programs in one terminal
+sudo yum install tmux
+
+# install miniconda and add its path to env
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
+bash ~/miniconda.sh -b -p ~/miniconda
+echo "PATH=$PATH:$HOME/miniconda/bin" >> ~/.bashrc
+source ~/.bashrc
+```
+
+-   Clone the repository and enter the `src` directory using
 ```shell
 git clone https://github.com/MonuSingh16/custom-wakeword.git
 cd custom-wakeword/spotify-custom-wakeword
@@ -74,7 +90,7 @@ pip install -r requirements.txt
 streamlit run app/main.py
 ```
 
-- After running above command 
+- After running above command you will be provided with external URL, which can be used to reach the streamlit application
 ![alt text](https://github.com/MonuSingh16/custom-wakeword/blob/main/spotify-custom-wakeword/imgs/ec2_output.png?raw=true)
 
 ### Cloud Model Deployment Architecture 
