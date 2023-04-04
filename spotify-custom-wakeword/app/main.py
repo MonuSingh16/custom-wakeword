@@ -37,24 +37,9 @@ if submit_button:
     if model_select == "CNN":
         model_cnn = models.load_model('../spotify-custom-wakeword/app/saved_models/model_cnn.h5')
         
-        tab1, tab2, tab3, tab4 = st.tabs(["🗃 Raw Data", "✅ Model Results", "🔎 Model Details", "🤓 Model Evaluation"])
-        
+        tab1, tab2, tab3 = st.tabs(["✅ Model Results", "🗃 Raw Data", "🔎 Model Details"])
+                         
         with tab1:
-            st.header("Raw Data")
-            plt.subplot(211)
-            plt.title('Spectrogram of a wav file')
-            plt.plot(x)
-            plt.xlabel('Sample')
-            plt.ylabel('Amplitude')
-            st.pyplot()
-
-            plt.subplot(212)
-            plt.specgram(x,Fs=sr)
-            plt.xlabel('Time')
-            plt.ylabel('Frequency')
-            st.pyplot()
-                    
-        with tab2:
 
             st.header("Model Results")
             y_pred = model_cnn.predict(X_inf)
@@ -83,6 +68,21 @@ if submit_button:
                             Accuracy score of %.3f""" %y_pred[0][y_pred_int][0]
                         ,icon="ℹ️")
         
+        with tab2:
+            st.header("Raw Data")
+            plt.subplot(211)
+            plt.title('Spectrogram of a wav file')
+            plt.plot(x)
+            plt.xlabel('Sample')
+            plt.ylabel('Amplitude')
+            st.pyplot()
+
+            plt.subplot(212)
+            plt.specgram(x,Fs=sr)
+            plt.xlabel('Time')
+            plt.ylabel('Frequency')
+            st.pyplot()
+
         with tab3:    
             st.header("Model Architecture")
             st.image('../spotify-custom-wakeword/imgs/cnn-model.png', caption='CNN Model', use_column_width='always', clamp=True)
@@ -92,11 +92,11 @@ if submit_button:
             st.header('Model Profiler')
             st.write(profile)
         
-        with tab4:
+        #with tab4:
             st.header("Model Evaluation")
             model_results_df = pd.read_csv("../spotify-custom-wakeword/app/results/model_results.csv", index_col=False)
             st.write(model_results_df)
-            st.image('../spotify-custom-wakeword/imgs/confusion-matrix.png')
+            #st.image('../spotify-custom-wakeword/imgs/confusion-matrix.png')
         
     else:
         st.write("No Model Selected")
